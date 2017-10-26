@@ -56,11 +56,28 @@ for i in range(len(actual_map)):
         #print(actual_ink_map[i][k], end="")
     #print("")
 
-max_len = 0
+def isneighbour(pos,island):
+    for q in island:
+        for i in ((1,0),(-1,0),(0,1),(0,-1)):
+            if pos==(i[0]+q[0],i[1]+q[1]):
+                return True
+    return False
+
+
+max_len = (0,0)
 click_to = (0,0)
+singleones=set()
 for x in island_sets:
-    if max_len <= len(x) and actual_map[list(x)[0][0]][list(x)[0][1]] != "-":
-        max_len = len(x)
+    if len(x)==1:
+        singleones.add(list(x)[0])
+for x in island_sets:
+    singleonescount=0
+    for i in singleones:
+        if isneighbour(i,x):
+            singleonescount+=1
+
+    if max_len <= (singleonescount,len(x)) and actual_map[list(x)[0][0]][list(x)[0][1]] != "-":
+        max_len = (singleonescount,len(x))
         click_to = list(x)[0]
     #print(x)
 
