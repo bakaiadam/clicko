@@ -76,7 +76,7 @@ for x in island_sets:
         if isneighbour(i,x):
             singleonescount+=1
 
-    if max_len <= (singleonescount,len(x)) and actual_map[list(x)[0][0]][list(x)[0][1]] != "-":
+    if len(x)>1 and max_len <= (singleonescount,len(x)) and actual_map[list(x)[0][0]][list(x)[0][1]] != "-":
         max_len = (singleonescount,len(x))
         click_to = list(x)[0]
     #print(x)
